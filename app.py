@@ -48,7 +48,7 @@ def save_submissions():
 app_mode = st.sidebar.selectbox("Select Mode", ["Course Selection Panel", "Admin Panel"])
 
 if app_mode == "Course Selection Panel":
-    st.title("Course Registration Form")
+    st.title("Course Preferences Form")
     
     # Initialize form
     with st.form(key="registration_form"):
@@ -65,7 +65,7 @@ if app_mode == "Course Selection Panel":
             )
             preferences.append(course)
             
-        submit_button = st.form_submit_button("Submit Registration")
+        submit_button = st.form_submit_button("Submit Preferences")
         
         if submit_button:
             # Validation
@@ -113,7 +113,7 @@ elif app_mode == "Admin Panel":
                 st.download_button(
                     label="Download CSV",
                     data=csv,
-                    file_name="course_registrations.csv",
+                    file_name="course_preferences.csv",
                     mime="text/csv"
                 )
                 st.write(f"Total submissions: {len(st.session_state.submissions)}")
