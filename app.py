@@ -39,6 +39,7 @@ def init_database():
             l_pref1 TEXT NOT NULL,
             l_pref2 TEXT NOT NULL,
             l_pref3 TEXT NOT NULL,
+            remarks TEXT,
             submission_date TEXT NOT NULL
         )
     ''')
@@ -116,16 +117,16 @@ def update_admin_credentials(username, password):
     if os.path.exists('admin_credentials.txt'):
         os.remove('admin_credentials.txt')
 
-def save_submission(name, email, preferences):
+def save_submission(name, email, preferences, remarks):
     """Save a new submission to the database."""
     conn = sqlite3.connect('course_preferences.db')
     c = conn.cursor()
     
     c.execute('''
-        INSERT INTO submissions (name, email, t_pref1, t_pref2, t_pref3, t_pref4, t_pref5, l_pref1, l_pref2, l_pref3, submission_date)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO submissions (name, email, t_pref1, t_pref2, t_pref3, t_pref4, t_pref5, l_pref1, l_pref2, l_pref3, remarks, submission_date)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     ''', (name, email, preferences[0], preferences[1], preferences[2], 
-          preferences[3], preferences[4], preferences[5], preferences[6], preferences[7], datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
+          preferences[3], preferences[4], preferences[5], preferences[6], preferences[7], remarks,  datetime.now().strftime("%Y-%m-%d %H:%M:%S")))
     
     conn.commit()
     conn.close()
@@ -222,6 +223,25 @@ app_mode = st.sidebar.selectbox("Select Mode", ["Course Selection Panel", "Admin
 
 if app_mode == "Course Selection Panel":
     st.title("Course Preference Form")
+    st.write(
+            '''
+            Dear Colleagues,
+
+            [1]. Please use the drop-down menu to register your choice(s) for the July-Nov 2025 teaching semester. At present, how many electives we can offer are still being determined. This will be decided after we find teachers for all the core courses. Please select a minimum of 3 core courses.
+
+            [2]. If you are not available to teach next semester or if you are preparing for a course in another department, please indicate that in the 'Remarks column.'
+
+            Please indicate if your schedule is still being determined, but you may be unavailable partly or wholly. It will not be possible for us to consider such factors later.
+
+            The last date to complete this form is XX March 2025, before 05.00 PM.
+
+            Please make sure you prefer different choices among each given five (Mandatory) and Three lab courses ( Mandatory )
+
+            Thank you.
+
+            Head of the Department. 
+            '''
+        )
     
     # Initialize form
     with st.form(key="registration_form"):
@@ -246,6 +266,7 @@ if app_mode == "Course Selection Panel":
                 key=f"lab_pref_{i}"
             )
             preferences.append(course)
+        remarks = st.text_input("Remarks")
 
             
         submit_button = st.form_submit_button("Submit Preferences")
@@ -260,7 +281,7 @@ if app_mode == "Course Selection Panel":
                 st.error("Please select unique courses for each preference.")
             else:
                 # Save submission to database
-                save_submission(name, email, preferences)
+                save_submission(name, email, preferences, remarks)
                 st.success("Thank you for your submission!")
                 st.balloons()
     
