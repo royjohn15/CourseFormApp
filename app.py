@@ -152,7 +152,7 @@ THEORY_COURSES = [
     'ID5191 : Project II',
     'ID5791 : Project II',
     'ID5843W : Experimental Techniques for Quantum Computation and Metrology',
-    'PH1010_1 : Physics I',
+    'PH1010 : Physics I',
     'PH1020 : Physics II',
     'PH1050 : Foundation of Computational Physics',
     'PH1080 : Thermodynamics and Kinetic Theory',
@@ -226,7 +226,7 @@ if app_mode == "Course Selection Panel":
     # Initialize form
     with st.form(key="registration_form"):
         name = st.text_input("Name")
-        email = st.text_input("Email")
+        email = st.text_input("IITM Email")
         
         # Create 5 dropdown selectors for courses with unique options
         st.write("Choose 5 theory courses")
@@ -256,7 +256,7 @@ if app_mode == "Course Selection Panel":
                 st.error("Name and Email are required fields.")
             elif not all(preferences):
                 st.error("Please select all course preferences.")
-            elif len(set(preferences)) < 5:
+            elif len(set(preferences)) < 8:
                 st.error("Please select unique courses for each preference.")
             else:
                 # Save submission to database
