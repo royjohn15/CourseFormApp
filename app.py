@@ -233,7 +233,7 @@ if app_mode == "Course Selection Panel":
 
             Please indicate if your schedule is still being determined, but you may be unavailable partly or wholly. It will not be possible for us to consider such factors later.
 
-            The last date to complete this form is XX March 2025, before 05.00 PM.
+            The last date to complete this form is 19 March 2025, before 05.00 PM.
 
             Please make sure you prefer different choices among each given five (Mandatory) and Three lab courses ( Mandatory )
 
