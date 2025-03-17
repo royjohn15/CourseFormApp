@@ -36,30 +36,6 @@ COURSES = [
     "Cybersecurity Essentials"
 ]
 
-# Custom CSS for white background and styling
-st.markdown("""
-<style>
-    .main {
-        background-color: white;
-        padding: 20px;
-    }
-    .stApp {
-        background-color: white;
-    }
-    .stButton>button {
-        background-color: #4CAF50;
-        color: white;
-        width: 100%;
-    }
-    h1, h2, h3 {
-        color: #333;
-    }
-    .css-1d391kg {
-        padding: 1rem 1rem 1rem;
-    }
-</style>
-""", unsafe_allow_html=True)
-
 # Function to hash password
 def hash_password(password):
     return hashlib.sha256(password.encode()).hexdigest()
@@ -69,9 +45,9 @@ def save_submissions():
     st.session_state.submissions.to_csv('submissions.csv', index=False)
 
 # App mode selector
-app_mode = st.sidebar.selectbox("Select Mode", ["Student Form", "Admin Panel"])
+app_mode = st.sidebar.selectbox("Select Mode", ["Course Selection Panel", "Admin Panel"])
 
-if app_mode == "Student Form":
+if app_mode == "Course Selection Panel":
     st.title("Course Registration Form")
     
     # Initialize form
