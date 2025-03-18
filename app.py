@@ -168,6 +168,7 @@ THEORY_COURSES = [
     'PH5310 : Synthesis and Characterization of Functional Materials',
     'PH5320 : Techniques of Characterization of Materials and Physical Measurements',
     'PH5410 : Atomic and Molecular Physics',
+    'PH5480 : Quantum Field Theory I'
     'PH5490 : Advanced Statistical Physics',
     'PH5600 : Physics At Low Temperatures',
     'PH5670 : Physics & Tech. of Thin Films',
@@ -192,6 +193,7 @@ LAB_COURSES = [
     'PHPCT0: Preparatory Course - Physics Lab',
     'PH1030 : Physics Laboratory I',
     'PH2050 : Physics Lab III',
+    'PH5060 : Physics Lab 1 (PG)',
     'PH5270 : Physics Lab III',
     'PH5330 : Laboratory for Synthesis and characterization of Functional Materials'
 ]
